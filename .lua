@@ -1,3 +1,19 @@
+for _, key in next, getgc(true) do
+   local function updateKey(instanceType)
+      if pcall(function() return rawget(key, instanceType) end) and typeof(rawget(key, instanceType)) == 'table' and (rawget(key, instanceType))[1] == 'kick' then
+         key.tvk = {
+            'kick',
+            function()
+               return game.Workspace:WaitForChild('')
+            end
+         }
+      end
+   end
+
+   updateKey('indexInstance')
+   updateKey('namecallInstance')
+end
+
 local Players, Client, Mouse, RS, Camera =
     game:GetService("Players"),
     game:GetService("Players").LocalPlayer,
